@@ -2,7 +2,7 @@ using AutoMapper;
 using MyProject.Core.Entities;
 using MyProject.Models.MyEntityDTO;
 
-namespace MyProject.Bussiness.Mappers;
+namespace MyProject.Infrastructure.Mappers;
 
 public class MyEntityMapperProfile : Profile
 {

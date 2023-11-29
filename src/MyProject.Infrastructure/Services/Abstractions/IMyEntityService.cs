@@ -1,6 +1,6 @@
 using MyProject.Core.Models.MyEntityDTO;
 
-namespace MyProject.Bussiness.Services.Abstractions;
+namespace MyProject.Infrastructure.Services.Abstractions;
 
 public interface IMyEntityService
 {

@@ -1,7 +1,7 @@
-using MyProject.Bussiness.Services.Abstractions;
+using MyProject.Infrastructure.Services.Abstractions;
 using MyProject.Core.Models.MyEntityDTO;
 
-namespace MyProject.Bussiness.Services.Abstractions;
+namespace MyProject.Infrastructure.Services.Abstractions;
 
 internal class MyEntityService : IMyEntityService
 {

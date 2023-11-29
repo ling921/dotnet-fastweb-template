@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Jing Ling",
+    "classifications": [
+        "Web"
+    ],
+    "name": "CRUD Items",
+    "identity": "Ling.Templates.CRUD",
+    "shortName": "cruditems",
+    "tags": {
+        "language": "C#",
+        "type": "item"
+    },
+    "sourceName": "MyEntity",
+    "preferNameDirectory": true,
+    "symbols": {
+        "projectPrefix": {
+            "type": "parameter",
+            "isRequired": true,
+            "fileRename": "MyProject",
+            "replaces": "MyProject",
+            "description": "The prefix of the project name."
+        },
+        "core": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Core",
+            "fileRename": "Core",
+            "replaces": "Core",
+            "description": "The project name without the prefix that entities are stored in."
+        },
+        "infrastructure": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Infrastructure",
+            "fileRename": "Infrastructure",
+            "replaces": "Infrastructure",
+            "description": "The project name without the prefix that infrastructure services are stored in."
+        },
+        "web": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Web",
+            "fileRename": "Web",
+            "replaces": "Web",
+            "description": "The project name without the prefix that controllers are stored in."
+        }
+    }
+}
