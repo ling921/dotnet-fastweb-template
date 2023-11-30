@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
+using MyProject.Core.Models.MyEntityDTO.Request;
+using MyProject.Core.Models.MyEntityDTO.Response;
 using MyProject.Infrastructure.Services.Abstractions;
 
-namespace MyProject.WebApi.Controllers;
+namespace MyProject.Web.Controllers;
 
+[Route("api/[controller]")]
 public class MyEntityController : ControllerBase
 {
     private readonly IMyEntityService _service;
@@ -11,33 +15,33 @@ public class MyEntityController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
-    public Task<QueryMyEntityEndpoint> GetAsync([FromQuery] QueryMyEntityRequest model, CancellationToken cancellationToken = default)
+    [HttpGet("{id}")]
+    public Task<MyEntityDetailResponse> GetAsync(TKey id, CancellationToken cancellationToken = default)
     {
-        return _service.GetAsync(model, cancellationToken);
+        return _service.GetByIdAsync(id, cancellationToken);
     }
 
-    [HttpGet]
-    public Task<QueryMyEntityEndpoint> GetList([FromQuery] QueryMyEntityRequest model, CancellationToken cancellationToken = default)
+    [HttpGet("")]
+    public Task<IEnumerable<MyEntityListItemResponse>> GetListAsync([FromQuery] QueryMyEntityRequest model, CancellationToken cancellationToken = default)
     {
-        return _service.GetAsync(model, cancellationToken);
+        return _service.GetListAsync(model, cancellationToken);
     }
 
     [HttpPost]
-    public Task<CreateMyEntityEndpoint> CreateAsync([FromBody] CreateMyEntityRequest model, CancellationToken cancellationToken = default)
+    public Task<TKey> CreateAsync([FromBody] CreateMyEntityRequest model, CancellationToken cancellationToken = default)
     {
         return _service.CreateAsync(model, cancellationToken);
     }
 
-    [HttpPut]
-    public Task<UpdateMyEntityEndpoint> UpdateAsync([FromBody] UpdateMyEntityRequest model, CancellationToken cancellationToken = default)
+    [HttpPut("{id}")]
+    public Task<TKey> UpdateAsync(TKey id, [FromBody] UpdateMyEntityRequest model, CancellationToken cancellationToken = default)
     {
-        return _service.UpdateAsync(model, cancellationToken);
+        return _service.UpdateAsync(id, model, cancellationToken);
     }
 
-    [HttpDelete]
-    public Task<DeleteMyEntityEndpoint> DeleteAsync([FromBody] DeleteMyEntityRequest model, CancellationToken cancellationToken = default)
+    [HttpDelete("{id}")]
+    public Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken = default)
     {
-        return _service.DeleteAsync(model, cancellationToken);
+        return _service.DeleteAsync(new[] { id }, cancellationToken);
     }
 }

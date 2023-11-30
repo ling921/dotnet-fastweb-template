@@ -1,6 +1,7 @@
 using AutoMapper;
 using MyProject.Core.Entities;
-using MyProject.Models.MyEntityDTO;
+using MyProject.Core.Models.MyEntityDTO.Request;
+using MyProject.Core.Models.MyEntityDTO.Response;
 
 namespace MyProject.Infrastructure.Mappers;
 
@@ -11,9 +12,9 @@ public class MyEntityMapperProfile : Profile
         CreateMap<CreateMyEntityRequest, MyEntity>();
         CreateMap<UpdateMyEntityRequest, MyEntity>();
 
-        CreateMap<MyEntity, GetMyEntityEndpoint>();
-        CreateMap<MyEntity, QueryMyEntityEndpoint>();
+        CreateMap<MyEntity, MyEntityDetailResponse>();
+        CreateMap<MyEntity, MyEntityListItemResponse>();
 
-        CreateProjection<MyEntity, QueryMyEntityEndpoint>();
+        CreateProjection<MyEntity, MyEntityListItemResponse>();
     }
 }

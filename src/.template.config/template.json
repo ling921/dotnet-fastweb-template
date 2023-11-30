@@ -11,15 +11,46 @@
         "language": "C#",
         "type": "item"
     },
+    "description": "A template for creating CRUD items.",
     "sourceName": "MyEntity",
-    "preferNameDirectory": true,
+    "preferNameDirectory": false,
     "symbols": {
-        "projectPrefix": {
+        "prefix": {
             "type": "parameter",
             "isRequired": true,
             "fileRename": "MyProject",
             "replaces": "MyProject",
             "description": "The prefix of the project name."
+        },
+        "entity-key-type": {
+            "type": "parameter",
+            "datatype": "choice",
+            "isRequired": false,
+            "choices": [
+                {
+                    "choice": "string",
+                    "description": "String"
+                },
+                {
+                    "choice": "int",
+                    "description": "Integer (32-bit)"
+                },
+                {
+                    "choice": "long",
+                    "description": "Integer (64-bit)"
+                },
+                {
+                    "choice": "guid",
+                    "description": "Guid"
+                },
+                {
+                    "choice": "object",
+                    "description": "Object"
+                }
+            ],
+            "defaultValue": "object",
+            "replaces": "TKey",
+            "description": "The key type of the entity."
         },
         "core": {
             "type": "parameter",
@@ -28,6 +59,14 @@
             "fileRename": "Core",
             "replaces": "Core",
             "description": "The project name without the prefix that entities are stored in."
+        },
+        "storage": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Storage",
+            "fileRename": "Storage",
+            "replaces": "Storage",
+            "description": "The project name without the prefix that DbContext is stored in."
         },
         "infrastructure": {
             "type": "parameter",
@@ -44,6 +83,30 @@
             "fileRename": "Web",
             "replaces": "Web",
             "description": "The project name without the prefix that controllers are stored in."
+        },
+        "disable-controller": {
+            "type": "parameter",
+            "datatype": "bool",
+            "isRequired": false,
+            "defaultValue": "false",
+            "description": "Disables the controller from being generated."
+        },
+        "has-key": {
+            "type": "computed",
+            "datatype": "bool",
+            "value": "(entity-key-type == string || entity-key-type == int || entity-key-type == long || entity-key-type == guid)"
         }
-    }
+    },
+    "sources": [
+        {
+            "modifiers": [
+                {
+                    "condition": "(disable-controller)",
+                    "exclude": [
+                        "MyProject.Web/Controllers/MyEntityController.cs"
+                    ]
+                }
+            ]
+        }
+    ]
 }
