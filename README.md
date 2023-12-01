@@ -11,17 +11,16 @@ This is a template for dotnet-cli to create CRUD items.
 
 ## How to install template
 
-```bash
-dotnet new install src
-```
+1. locate into `src` folder
+2. run `dotnet new install item`
 
-note: can not delete any item in `src` folder, it will cause error when running `dotnet new cruditems`
+note: can not delete any item in `item` folder, it will cause error when running `dotnet new cruditems`
 
 
 ## How to modify and update template
 
 1. make your changes
-2. run `dotnet new install src --force`
+2. run `dotnet new install item --force`
 
 
 ## How to use template
@@ -44,6 +43,5 @@ note: can not delete any item in `src` folder, it will cause error when running 
 
 ## How to uninstall template
 
-```bash
-dotnet new uninstall src
-```
+1. locate into `src` folder
+2. run `dotnet new uninstall item`
