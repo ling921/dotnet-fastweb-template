@@ -1,0 +1,244 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Jing Ling",
+    "classifications": [
+        "web",
+        "api",
+        "template"
+    ],
+    "name": "Fast web template",
+    "identity": "Ling.Templates.FastEndpoints",
+    "shortName": "fw",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "description": "A template for creating a WebApi project with 'FastEndpoints' or creating CRUD items.",
+    "sourceName": "FastWeb",
+    "preferNameDirectory": true,
+    "symbols": {
+        "type": {
+            "type": "parameter",
+            "datatype": "choice",
+            "isRequired": false,
+            "choices": [
+                {
+                    "choice": "project",
+                    "description": "Generate a project."
+                },
+                {
+                    "choice": "item",
+                    "description": "Generate CRUD items."
+                }
+            ],
+            "defaultValue": "project",
+            "description": "The generation type for the command."
+        },
+        "core": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Core",
+            "fileRename": "Core",
+            "replaces": "Core",
+            "description": "The project name without the prefix that Entities, DTOs, and Validators are stored in."
+        },
+        "storage": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Storage",
+            "fileRename": "Storage",
+            "replaces": "Storage",
+            "description": "The project name without the prefix that DbContext and EntityTypeConfigurations are stored in."
+        },
+        "infrastructure": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Infrastructure",
+            "fileRename": "Infrastructure",
+            "replaces": "Infrastructure",
+            "description": "The project name without the prefix that Endpoints, Services and Mappers are stored in."
+        },
+        "web": {
+            "type": "parameter",
+            "isRequired": false,
+            "defaultValue": "Web",
+            "fileRename": "Web",
+            "replaces": "Web",
+            "description": "The project name without the prefix that startup and http files are stored in."
+        },
+        "restful": {
+            "type": "parameter",
+            "datatype": "bool",
+            "isRequired": false,
+            "defaultValue": "false",
+            "description": "Whether to use RESTful API."
+        },
+        "entity-name": {
+            "type": "parameter",
+            "datatype": "string",
+            "isRequired": "(type == item)",
+            "isEnabled": "(type == item)",
+            "description": "The name of the entity without 'Entity' suffix.",
+            "fileRename": "Sample",
+            "replaces": "Sample",
+            "defaultValue": "Sample"
+        },
+        "entity-primary-key-type": {
+            "type": "parameter",
+            "datatype": "choice",
+            "isRequired": false,
+            "choices": [
+                {
+                    "choice": "string",
+                    "description": "String"
+                },
+                {
+                    "choice": "int",
+                    "description": "Integer (32-bit)"
+                },
+                {
+                    "choice": "long",
+                    "description": "Integer (64-bit)"
+                },
+                {
+                    "choice": "guid",
+                    "description": "Guid"
+                },
+                {
+                    "choice": "object",
+                    "description": "Object"
+                }
+            ],
+            "defaultValue": "int",
+            "description": "The primary key type of the entity. It will always be 'int' when creating project."
+        },
+        "pagination": {
+            "type": "parameter",
+            "datatype": "bool",
+            "isRequired": false,
+            "isEnabled": "(type == item)",
+            "defaultValue": "false",
+            "description": "Whether to use pagination to get items."
+        },
+        "is-project": {
+            "type": "computed",
+            "datatype": "bool",
+            "value": "(type == project)"
+        },
+        "http-port": {
+            "type": "generated",
+            "datatype": "int",
+            "generator": "port",
+            "parameters": {
+                "low": 5000,
+                "high": 5999,
+                "fallback": 5859
+            },
+            "replaces": "5039"
+        },
+        "https-port": {
+            "type": "generated",
+            "datatype": "int",
+            "generator": "regex",
+            "parameters": {
+                "source": "http-port",
+                "steps": [
+                    {
+                        "regex": "^\\d",
+                        "replacement": "7"
+                    }
+                ]
+            },
+            "replaces": "7039"
+        },
+        "primary-key": {
+            "type": "generated",
+            "datatype": "string",
+            "generator": "switch",
+            "parameters": {
+                "datatype": "string",
+                "cases": [
+                    {
+                        "condition": "(is-project)",
+                        "value": "int"
+                    },
+                    {
+                        "condition": "(entity-primary-key-type == string)",
+                        "value": "string"
+                    },
+                    {
+                        "condition": "(entity-primary-key-type == int)",
+                        "value": "int"
+                    },
+                    {
+                        "condition": "(entity-primary-key-type == long)",
+                        "value": "long"
+                    },
+                    {
+                        "condition": "(entity-primary-key-type == guid)",
+                        "value": "Guid"
+                    },
+                    {
+                        "condition": "",
+                        "value": "int"
+                    }
+                ]
+            },
+            "replaces": "TEntityKey"
+        },
+        "entity-route-name": {
+            "type": "derived",
+            "datatype": "string",
+            "valueSource": "entity-name",
+            "valueTransform": "kebab",
+            "replaces": "sample"
+        }
+    },
+    "sources": [
+        {
+            "exclude": [
+                "**/[Bb]in/**",
+                "**/[Oo]bj/**",
+                ".template.config/**/*",
+                "**/*.filelist",
+                "**/*.user",
+                "**/*.lock.json",
+                "**/.git/**",
+                "**/*.gitignore",
+                "**/*.gitattributes",
+                "**/LICENSE",
+                "**/README*.md"
+            ],
+            "modifiers": [
+                {
+                    "condition": "(!is-project)",
+                    "exclude": [
+                        "FastWeb.sln",
+                        "create-item.*",
+                        "src/FastWeb.Core/FastWeb.Core.csproj",
+                        "src/FastWeb.Core/CoreAssembly.cs",
+                        "src/FastWeb.Core/Models/PagedRequest.cs",
+                        "src/FastWeb.Core/Models/PagedResponse.cs",
+                        "src/FastWeb.Storage/FastWeb.Storage.csproj",
+                        "src/FastWeb.Storage/StorageAssembly.cs",
+                        "src/FastWeb.Storage/AppDbContext.cs",
+                        "src/FastWeb.Storage/Migrations/**",
+                        "src/FastWeb.Infrastructure/FastWeb.Infrastructure.csproj",
+                        "src/FastWeb.Infrastructure/InfrastructureAssembly.cs",
+                        "src/FastWeb.Infrastructure/Extensions/**",
+                        "src/FastWeb.Infrastructure/Services/**",
+                        "src/FastWeb.Web/FastWeb.Web.csproj",
+                        "src/FastWeb.Web/Program.cs",
+                        "src/FastWeb.Web/**/*.json",
+                        "src/Directory.Build.props"
+                    ]
+                }
+            ]
+        }
+    ],
+    "forms": {
+        "kebab": {
+            "identifier": "kebabCase"
+        }
+    }
+}

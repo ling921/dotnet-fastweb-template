@@ -1,0 +1,16 @@
+{
+    "author": "Jing Ling",
+    "name": "Fast web template",
+    "description": "A template for creating a WebApi project with 'FastEndpoints' or creating CRUD items.",
+    "symbols/type/description": "The generation type for the command.",
+    "symbols/type/choices/project/description": "Generate a project.",
+    "symbols/type/choices/item/description": "Generate CRUD items.",
+    "symbols/core/description": "The project name without the prefix that Entities, DTOs, and Validators are stored in.",
+    "symbols/storage/description": "The project name without the prefix that DbContext and EntityTypeConfigurations are stored in.",
+    "symbols/infrastructure/description": "The project name without the prefix that Endpoints, Services and Mappers are stored in.",
+    "symbols/web/description": "The project name without the prefix that startup and http files are stored in.",
+    "symbols/restful/description": "Whether to use RESTful API.",
+    "symbols/entity-name/description": "The name of the entity without 'Entity' suffix.",
+    "symbols/entity-primary-key-type/description": "The primary key type of the entity. It will always be 'int' when creating project.",
+    "symbols/pagination/description": "Whether to use pagination to get items."
+}

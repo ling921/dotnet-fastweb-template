@@ -1,0 +1,16 @@
+{
+    "author": "凌景",
+    "name": "快速 Web 模板",
+    "description": "用于创建 WebApi 项目或创建 CRUD 项的模板",
+    "symbols/type/description": "生成类型",
+    "symbols/type/choices/project/description": "生成项目",
+    "symbols/type/choices/item/description": "生成 CRUD 项",
+    "symbols/core/description": "放置实体(Entity)、数据传输对象(Dto)和验证器(Validator)的项目名称(不含前缀)",
+    "symbols/storage/description": "放置数据库上下文(DbContext)和实体类型配置(EntityTypeConfiguration)的项目名称(不含前缀)",
+    "symbols/infrastructure/description": "放置终结点(Endpoint)、服务(Service)和映射器(Mapper)的项目名称(不含前缀)",
+    "symbols/web/description": "放置程序集入口(Program.cs)和 http 文件的项目名称(不含前缀)",
+    "symbols/restful/description": "是否使用 RESTful API",
+    "symbols/entity-name/description": "实体名称(不含Entity后缀)",
+    "symbols/entity-primary-key-type/description": "实体主键类型，当创建项目时始终为 'int'",
+    "symbols/pagination/description": "是否使用分页获取数据列表"
+}

@@ -1,0 +1,75 @@
+@FastWeb.Web_HostAddress = http://localhost:5039
+
+//#if restful
+GET {{FastWeb.Web_HostAddress}}/api/sample/1
+//#else
+GET {{FastWeb.Web_HostAddress}}/api/sample/get?id=1
+//#endif
+Accept: application/json
+
+###
+
+
+//#if restful
+GET {{FastWeb.Web_HostAddress}}/api/sample?keyword=a&pageNumber=1&pageSize=10
+//#else
+GET {{FastWeb.Web_HostAddress}}/api/sample/get-list?keyword=a&pageNumber=1&pageSize=10
+//#endif
+Accept: application/json
+
+###
+
+
+//#if restful
+POST {{FastWeb.Web_HostAddress}}/api/sample
+//#else
+POST {{FastWeb.Web_HostAddress}}/api/sample/create
+//#endif
+Content-Type: application/json
+
+//#if is-project
+{
+  "firstName": "Bard",
+  "lastName": "Petty",
+  "birthday": "2000-01-01"
+}
+
+//#endif
+###
+
+
+//#if restful
+PUT {{FastWeb.Web_HostAddress}}/api/sample/1
+//#else
+PUT {{FastWeb.Web_HostAddress}}/api/sample/update
+//#endif
+Content-Type: application/json
+
+//#if is-project
+{
+//#if restful
+  "id": 1,
+//#endif
+  "firstName": "Bard",
+  "lastName": "Petty",
+  "birthday": "2000-01-01"
+}
+
+//#endif
+###
+
+
+//#if restful
+DELETE {{FastWeb.Web_HostAddress}}/api/sample/1
+//#else
+DELETE {{FastWeb.Web_HostAddress}}/api/sample/delete
+//#endif
+Content-Type: application/json
+
+//#if is-project && !restful
+{
+  "id": 1
+}
+
+//#endif
+###
