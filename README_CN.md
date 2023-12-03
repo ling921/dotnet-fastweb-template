@@ -1,14 +1,12 @@
 # FastWeb Template
 [English](README.md) | 简体中文
 
-这是一个基于`dotnet cli`的用于创建Web项目的模板，同时可用于生成CRUD项。
+这是一个基于`dotnet-cli`的用于创建Web项目的模板，同时可用于生成CRUD项。
 
-这个项目依赖于[FastEndpoints](https://github.com/FastEndpoints/FastEndpoints)
-
-> 文档参考
-> [Official tutorial](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/cli-templates-create-item-template)
-> [Official wiki](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
-> [Official blog](https://devblogs.microsoft.com/dotnet/how-to-create-your-own-templates-for-dotnet-new/)
+> `dotnet-cli`模板参考文档  
+> [Official tutorial](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/cli-templates-create-item-template)  
+> [Official wiki](https://github.com/dotnet/templating/wiki/Reference-for-template.json)  
+> [Official blog](https://devblogs.microsoft.com/dotnet/how-to-create-your-own-templates-for-dotnet-new/)  
 
 
 ## 如何安装模板

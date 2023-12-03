@@ -1,11 +1,11 @@
 # FastWeb Template
 English | [简体中文](README_CN.md)
 
-This is a `dotnet cli` based template for creating Web projects. It can also be used to generate CRUD items.
+This is a `dotnet-cli` based template for creating Web projects. It can also be used to generate CRUD items.
 
 This project depends on [FastEndpoints](https://github.com/FastEndpoints/FastEndpoints)
 
-> Documents references
+> Documents references for `dotnet-cli` templates  
 > [Official tutorial](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/cli-templates-create-item-template)  
 > [Official wiki](https://github.com/dotnet/templating/wiki/Reference-for-template.json)  
 > [Official blog](https://devblogs.microsoft.com/dotnet/how-to-create-your-own-templates-for-dotnet-new/)  
@@ -35,7 +35,7 @@ note: it may cause `dotnet new fw` to fail if remove files inside
 | `-?` | | | get help |
 | `-n` | `false` | | Solution name, default is output folder name |
 | `-o` | `false` | | Output folder, default is folder command executed |
-| `-t` | `false` | `project` | Type of dotnet cli creation, `project` to create project, `item` to create CRUD items |
+| `-t` | `false` | `project` | Type of `dotnet-cli` creation, `project` to create project, `item` to create CRUD items |
 | `-c` | `false` | `Core` | Project name without prefix for entities, DTOs and validators |
 | `-s` | `false` | `Storage` | Project name without prefix for DbContext and entity type configuration |
 | `-f` | `false` | `Infrastructure` | Project name without prefix for endpoints, services and mappers |
