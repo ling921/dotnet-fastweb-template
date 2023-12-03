@@ -3,8 +3,6 @@ English | [简体中文](README_CN.md)
 
 This is a `dotnet-cli` based template for creating Web projects. It can also be used to generate CRUD items.
 
-This project depends on [FastEndpoints](https://github.com/FastEndpoints/FastEndpoints)
-
 > Documents references for `dotnet-cli` templates  
 > [Official tutorial](https://learn.microsoft.com/zh-cn/dotnet/core/tutorials/cli-templates-create-item-template)  
 > [Official wiki](https://github.com/dotnet/templating/wiki/Reference-for-template.json)  
