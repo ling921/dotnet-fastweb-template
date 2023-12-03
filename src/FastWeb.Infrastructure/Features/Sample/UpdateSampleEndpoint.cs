@@ -14,7 +14,7 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
     public override void Configure()
     {
 #if (restful)
-        Put("/api/sample/{Id:int}"); 
+        Put("/api/sample/{Id:int}");
 #else
         Put("/api/sample/update");
 #endif

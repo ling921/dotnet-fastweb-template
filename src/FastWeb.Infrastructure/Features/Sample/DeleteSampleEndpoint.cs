@@ -14,7 +14,7 @@ internal class DeleteSampleEndpoint : Endpoint<DeleteSampleRequest, DeleteSample
     public override void Configure()
     {
 #if (restful)
-        Delete("/api/sample/{Id:int}"); 
+        Delete("/api/sample/{Id:int}");
 #else
         Delete("/api/sample/delete");
 #endif

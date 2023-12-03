@@ -1,7 +1,9 @@
 ﻿using AutoMapper.QueryableExtensions;
 using FastEndpoints;
 using FastWeb.Core.Entities;
+#if (!is-project && !pagination)
 using FastWeb.Core.Models;
+#endif
 using FastWeb.Core.Models.Sample.GetList;
 using FastWeb.Storage;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +23,7 @@ internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerabl
     public override void Configure()
     {
 #if (restful)
-        Get("/api/sample"); 
+        Get("/api/sample");
 #else
         Get("/api/sample/get-list");
 #endif
