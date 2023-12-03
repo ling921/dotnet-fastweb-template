@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace FastWeb.Core.Models.Sample.GetList;
 
-#if is-project || pagination
+#if (is-project || pagination)
 public class GetListSampleRequest : PagedRequest
 #else
 public class GetListSampleRequest
@@ -16,7 +16,7 @@ public class GetListSampleRequest
     {
         public Validator()
         {
-#if is-project || pagination
+#if (is-project || pagination)
             Include(new PagedRequestValidator());
 #endif
         }

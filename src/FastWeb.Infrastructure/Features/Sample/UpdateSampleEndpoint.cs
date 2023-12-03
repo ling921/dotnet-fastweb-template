@@ -13,7 +13,7 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
 
     public override void Configure()
     {
-#if restful
+#if (restful)
         Put("/api/sample/{Id:int}"); 
 #else
         Put("/api/sample/update");
@@ -24,11 +24,11 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
         {
             s.Summary = "修改Sample";
             s.Description = "修改一个Sample";
-#if is-project
+#if (is-project)
             s.ExampleRequest = new(1, "Lydia", "Lawrence", new(1999, 1, 1));
-#elif (primary-key == int || primary-key == long)
+#elseif (primary-key == "int" || primary-key == "long")
             s.ExampleRequest = new(1);
-#elif (primary-key == Guid)
+#elseif (primary-key == "Guid")
             s.ExampleRequest = new(Guid.NewGuid());
 #else
             s.ExampleRequest = new(default!);

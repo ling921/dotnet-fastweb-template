@@ -1,11 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿#if (is-project)
+using System.Text.Json.Serialization;
 
+#endif
 namespace FastWeb.Core.Models.Sample.GetList;
 
 public class GetListSampleResponse
 {
     public int Id { get; set; }
-#if is-project
+#if (is-project)
     public string Name { get; set; } = default!;
 
     [JsonIgnore]

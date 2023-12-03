@@ -16,7 +16,7 @@ internal class SampleMapperProfile : Profile
 
         CreateMap<SampleEntity, GetSampleResponse>();
 
-#if is-project
+#if (is-project)
         CreateProjection<SampleEntity, GetListSampleResponse>()
             .ForMember(d => d.Name, o => o.MapFrom(s => s.FirstName + " " + s.LastName));
 #else

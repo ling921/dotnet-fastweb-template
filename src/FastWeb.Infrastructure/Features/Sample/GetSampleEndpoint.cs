@@ -13,7 +13,7 @@ internal class GetSampleEndpoint : Endpoint<GetSampleRequest, GetSampleResponse>
 
     public override void Configure()
     {
-#if restful
+#if (restful)
         Get("/api/sample/{Id:int}");
 #else
         Get("/api/sample/get");
@@ -24,9 +24,9 @@ internal class GetSampleEndpoint : Endpoint<GetSampleRequest, GetSampleResponse>
         {
             s.Summary = "获取Sample";
             s.Description = "获取一个Sample";
-#if (primary-key == int || primary-key == long)
+#if (primary-key == "int" || primary-key == "long")
             s.ExampleRequest = new(1);
-#elif (primary-key == Guid)
+#elseif (primary-key == "Guid")
             s.ExampleRequest = new(Guid.NewGuid());
 #else
             s.ExampleRequest = new(default!);

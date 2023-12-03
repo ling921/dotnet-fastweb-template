@@ -13,7 +13,7 @@ internal class SampleEntityConfiguration : IEntityTypeConfiguration<SampleEntity
 #if (primary-key != object)
         builder.HasKey(x => x.Id);
 #endif
-#if is-project
+#if (is-project)
 
         builder.Property(x => x.FirstName).HasMaxLength(50);
         builder.Property(x => x.LastName).HasMaxLength(50);

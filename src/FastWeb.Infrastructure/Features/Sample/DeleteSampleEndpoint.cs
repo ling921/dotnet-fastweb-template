@@ -13,7 +13,7 @@ internal class DeleteSampleEndpoint : Endpoint<DeleteSampleRequest, DeleteSample
 
     public override void Configure()
     {
-#if restful
+#if (restful)
         Delete("/api/sample/{Id:int}"); 
 #else
         Delete("/api/sample/delete");
@@ -24,9 +24,9 @@ internal class DeleteSampleEndpoint : Endpoint<DeleteSampleRequest, DeleteSample
         {
             s.Summary = "删除Sample";
             s.Description = "删除一个Sample";
-#if (primary-key == int || primary-key == long)
+#if (primary-key == "int" || primary-key == "long")
             s.ExampleRequest = new(1);
-#elif (primary-key == Guid)
+#elseif (primary-key == "Guid")
             s.ExampleRequest = new(Guid.NewGuid());
 #else
             s.ExampleRequest = new(default!);

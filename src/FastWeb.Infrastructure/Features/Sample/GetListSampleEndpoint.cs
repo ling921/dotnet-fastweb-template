@@ -9,7 +9,7 @@ using IMapper = AutoMapper.IMapper;
 
 namespace FastWeb.Infrastructure.Features.Sample;
 
-#if is-project || pagination
+#if (is-project || pagination)
 internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, PagedResponse<GetListSampleResponse>>
 #else
 internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerable<GetListSampleResponse>>
@@ -20,7 +20,7 @@ internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerabl
 
     public override void Configure()
     {
-#if restful
+#if (restful)
         Get("/api/sample"); 
 #else
         Get("/api/sample/get-list");
@@ -39,13 +39,13 @@ internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerabl
     {
         var result = await DbContext.Set<SampleEntity>()
             .AsNoTracking()
-#if is-project
+#if (is-project)
             .WhereIf(!string.IsNullOrWhiteSpace(req.Keyword), e => e.FirstName.Contains(req.Keyword!) || e.LastName.Contains(req.Keyword!))
 #else
             .WhereIf(!string.IsNullOrWhiteSpace(req.Keyword), e => true)
 #endif
             .ProjectTo<GetListSampleResponse>(Mapper.ConfigurationProvider)
-#if is-project || pagination
+#if (is-project || pagination)
             .ToPagedListAsync(req, ct);
 #else
             .ToListAsync(ct);

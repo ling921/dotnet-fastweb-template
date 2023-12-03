@@ -13,7 +13,7 @@ internal class CreateSampleEndpoint : Endpoint<CreateSampleRequest, CreateSample
 
     public override void Configure()
     {
-#if restful
+#if (restful)
         Post("api/sample");
 #else
         Post("api/sample/create");
@@ -24,7 +24,7 @@ internal class CreateSampleEndpoint : Endpoint<CreateSampleRequest, CreateSample
         {
             s.Summary = "创建Sample";
             s.Description = "创建一个Sample";
-#if is-project
+#if (is-project)
             s.ExampleRequest = new("Lydia", "Lawrence", new(1999, 1, 1));
 #else
             s.ExampleRequest = new();
