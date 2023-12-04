@@ -8,9 +8,9 @@ public record UpdateSampleRequest(TEntityKey Id, string FirstName, string LastNa
 public record UpdateSampleRequest(TEntityKey Id)
 #endif
 {
-    public class UpdateSampleValidator : AbstractValidator<UpdateSampleRequest>
+    public class Validator : AbstractValidator<UpdateSampleRequest>
     {
-        public UpdateSampleValidator()
+        public Validator()
         {
 #if (primary-key == "int" || primary-key == "long")
             RuleFor(x => x.Id).GreaterThan(0);
