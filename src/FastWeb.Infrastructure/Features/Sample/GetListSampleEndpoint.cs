@@ -1,7 +1,7 @@
 ﻿using AutoMapper.QueryableExtensions;
 using FastEndpoints;
 using FastWeb.Core.Entities;
-#if (!is-project && !pagination)
+#if (is-project || pagination)
 using FastWeb.Core.Models;
 #endif
 using FastWeb.Core.Models.Sample.GetList;
