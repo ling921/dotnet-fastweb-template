@@ -14,9 +14,9 @@ internal class GetSampleEndpoint : Endpoint<GetSampleRequest, GetSampleResponse>
     public override void Configure()
     {
 #if (restful)
-        Get("/api/sample/{Id:int}");
+        Get("api/sample/{Id:int}");
 #else
-        Get("/api/sample/get");
+        Get("api/sample/get");
 #endif
         AllowAnonymous();
 
@@ -43,6 +43,6 @@ internal class GetSampleEndpoint : Endpoint<GetSampleRequest, GetSampleResponse>
             return;
         }
 
-        await SendAsync(Mapper.Map<GetSampleResponse>(entity), cancellation: ct);
+        await SendOkAsync(Mapper.Map<GetSampleResponse>(entity), ct);
     }
 }

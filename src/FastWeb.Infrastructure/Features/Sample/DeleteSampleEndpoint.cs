@@ -14,9 +14,9 @@ internal class DeleteSampleEndpoint : Endpoint<DeleteSampleRequest, DeleteSample
     public override void Configure()
     {
 #if (restful)
-        Delete("/api/sample/{Id:int}");
+        Delete("api/sample/{Id:int}");
 #else
-        Delete("/api/sample/delete");
+        Delete("api/sample/delete");
 #endif
         AllowAnonymous();
 
@@ -46,6 +46,6 @@ internal class DeleteSampleEndpoint : Endpoint<DeleteSampleRequest, DeleteSample
         DbContext.Set<SampleEntity>().Remove(entity);
         await DbContext.SaveChangesAsync(ct);
 
-        await SendAsync(new(), cancellation: ct);
+        await SendOkAsync(new(), ct);
     }
 }

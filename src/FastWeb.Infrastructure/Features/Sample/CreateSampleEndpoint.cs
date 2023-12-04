@@ -38,6 +38,6 @@ internal class CreateSampleEndpoint : Endpoint<CreateSampleRequest, CreateSample
         await DbContext.AddAsync(entity, ct);
         await DbContext.SaveChangesAsync(ct);
 
-        await SendAsync(new(), cancellation: ct);
+        await SendOkAsync(new(), ct);
     }
 }

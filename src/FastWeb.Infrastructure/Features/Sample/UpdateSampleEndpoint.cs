@@ -14,9 +14,9 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
     public override void Configure()
     {
 #if (restful)
-        Put("/api/sample/{Id:int}");
+        Put("api/sample/{Id:int}");
 #else
-        Put("/api/sample/update");
+        Put("api/sample/update");
 #endif
         AllowAnonymous();
 
@@ -42,11 +42,12 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
         if (entity is null)
         {
             await SendNotFoundAsync(ct);
+            return;
         }
 
         Mapper.Map(req, entity);
         await DbContext.SaveChangesAsync(ct);
 
-        await SendAsync(new(), cancellation: ct);
+        await SendOkAsync(new(), ct);
     }
 }

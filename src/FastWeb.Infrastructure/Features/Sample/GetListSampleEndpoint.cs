@@ -23,9 +23,9 @@ internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerabl
     public override void Configure()
     {
 #if (restful)
-        Get("/api/sample");
+        Get("api/sample");
 #else
-        Get("/api/sample/get-list");
+        Get("api/sample/get-list");
 #endif
         AllowAnonymous();
 
@@ -53,6 +53,6 @@ internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerabl
             .ToListAsync(ct);
 #endif
 
-        await SendAsync(result, cancellation: ct);
+        await SendOkAsync(result, ct);
     }
 }
