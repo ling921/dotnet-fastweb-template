@@ -12,9 +12,9 @@ using IMapper = AutoMapper.IMapper;
 namespace FastWeb.Infrastructure.Features.Sample;
 
 #if (is-project || pagination)
-internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, PagedResponse<GetListSampleResponse>>
+internal class GetListEndpoint : Endpoint<GetListSampleRequest, PagedResponse<GetListSampleResponse>>
 #else
-internal class GetListSampleEndpoint : Endpoint<GetListSampleRequest, IEnumerable<GetListSampleResponse>>
+internal class GetListEndpoint : Endpoint<GetListSampleRequest, IEnumerable<GetListSampleResponse>>
 #endif
 {
     public IMapper Mapper { get; set; } = default!; // Injected by FastEndpoints automatically

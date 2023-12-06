@@ -26,7 +26,7 @@ internal class RequestLocalizationOptionsPostConfigure : IPostConfigureOptions<R
             options.SetDefaultCulture(cultures.Default);
         }
         options.AddSupportedCultures(cultures.Supported);
-        options.AddSupportedCultures(cultures.UISupported);
+        options.AddSupportedUICultures(cultures.UISupported);
         options.ApplyCurrentCultureToResponseHeaders = true;
     }
 

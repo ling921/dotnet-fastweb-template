@@ -1,32 +1,36 @@
 ﻿using FastEndpoints;
 using FastWeb.Core.Entities;
-using FastWeb.Core.Models.Sample.Update;
+using FastWeb.Core.Models.Sample.Delete;
 using FastWeb.Storage;
 using IMapper = AutoMapper.IMapper;
 
 namespace FastWeb.Infrastructure.Features.Sample;
 
-internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSampleResponse>
+internal class DeleteEndpoint : Endpoint<DeleteSampleRequest, DeleteSampleResponse>
 {
     public IMapper Mapper { get; set; } = default!; // Injected by FastEndpoints automatically
     public AppDbContext DbContext { get; set; } = default!; // Injected by FastEndpoints automatically
 
     public override void Configure()
     {
-#if (restful)
-        Put("api/sample/{Id:int}");
+#if (!restful)
+        Delete("api/sample/delete");
+#elseif (primary-key == "int")
+        Get("api/sample/{Id:int}");
+#elseif (primary-key == "long")
+        Get("api/sample/{Id:long}");
+#elseif (primary-key == "Guid")
+        Get("api/sample/{Id:guid}");
 #else
-        Put("api/sample/update");
+        Get("api/sample/{Id}");
 #endif
         AllowAnonymous();
 
         Summary(s =>
         {
-            s.Summary = "修改Sample";
-            s.Description = "修改一个Sample";
-#if (is-project)
-            s.ExampleRequest = new(1, "Lydia", "Lawrence", new(1999, 1, 1));
-#elseif (primary-key == "int" || primary-key == "long")
+            s.Summary = "删除Sample";
+            s.Description = "删除一个Sample";
+#if (primary-key == "int" || primary-key == "long")
             s.ExampleRequest = new(1);
 #elseif (primary-key == "Guid")
             s.ExampleRequest = new(Guid.NewGuid());
@@ -36,7 +40,7 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
         });
     }
 
-    public override async Task HandleAsync(UpdateSampleRequest req, CancellationToken ct)
+    public override async Task HandleAsync(DeleteSampleRequest req, CancellationToken ct)
     {
         var entity = await DbContext.FindAsync<SampleEntity>(req.Id);
         if (entity is null)
@@ -45,7 +49,7 @@ internal class UpdateSampleEndpoint : Endpoint<UpdateSampleRequest, UpdateSample
             return;
         }
 
-        Mapper.Map(req, entity);
+        DbContext.Set<SampleEntity>().Remove(entity);
         await DbContext.SaveChangesAsync(ct);
 
         await SendOkAsync(new(), ct);

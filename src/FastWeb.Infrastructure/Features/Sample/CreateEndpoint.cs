@@ -6,7 +6,7 @@ using IMapper = AutoMapper.IMapper;
 
 namespace FastWeb.Infrastructure.Features.Sample;
 
-internal class CreateSampleEndpoint : Endpoint<CreateSampleRequest, CreateSampleResponse>
+internal class CreateEndpoint : Endpoint<CreateSampleRequest, CreateSampleResponse>
 {
     public IMapper Mapper { get; set; } = default!; // Injected by FastEndpoints automatically
     public AppDbContext DbContext { get; set; } = default!; // Injected by FastEndpoints automatically
