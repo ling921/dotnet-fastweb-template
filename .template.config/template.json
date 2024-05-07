@@ -116,7 +116,7 @@
             "type": "parameter",
             "datatype": "bool",
             "isRequired": false,
-            "isEnabled": "(type == item)",
+            "isEnabled": true,
             "defaultValue": "false",
             "description": "Whether to use pagination to get items."
         },
@@ -207,7 +207,9 @@
                 "**/*.gitignore",
                 "**/*.gitattributes",
                 "**/LICENSE",
-                "**/README*.md"
+                "**/README*.md",
+                "**/.vscode/**",
+                "**/.vs/**"
             ],
             "modifiers": [
                 {
